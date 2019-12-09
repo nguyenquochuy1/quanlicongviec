@@ -3,11 +3,48 @@ import React from 'react';
 import './App.css';
 import TaskForm from './compoment/TaskForm';
 import Control from './compoment/Control';
-import TaskList from './compoment/TaskForm';
+import TaskList from './compoment/TaskList';
 
 class App extends React.Component {
+  
 
+  constructor(props) {
+    super(props);
+    this.state = { 
+        tasks : []
+     }
+  }
+  
+  onGenerateData = () => {
+    //console.log('hien cmn thi ');
 
+    var tasks = [  // id : unique , name , status 
+      {
+        id : this.generateID(),
+        name : 'Hoc Lap trinh',
+        status : true
+      },
+
+      {
+        id : this.generateID(),
+        name : 'Hoc Lap trinh',
+        status : true
+      },
+
+      {
+        id : this.generateID(),
+        name : 'Hoc Lap trinh',
+        status : true
+      }
+    ];
+  }
+  s4(){
+    return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
+  }
+  generateID(){
+    return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +this.s4() + '-'+ 
+    this.s4() + this.s4()  +this.s4() ;
+  }
 
   render(){
     return (
@@ -18,20 +55,29 @@ class App extends React.Component {
         </div>
         <div className="row mt-15">
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            {/* this is a from  */}
             <TaskForm/>
           </div>
           <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
             <button type="button" className="btn btn-primary">
               <span className="fa fa-plus mr-5" />Thêm Công Việc
             </button>
+
+            <button 
+              type="button" 
+              className="btn btn-danger ml-5"
+              onClick={this.onGenerateData}
+              >
+              Data Genergertor
+            </button>
             
+            {/* Search-Sort */}
             <Control/>
             
-            <div className="row mt-15">
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <TaskList/>
-              </div>
-            </div>
+            {/* List */}
+            <TaskList/>
+            
           </div>
         </div>
       </div>

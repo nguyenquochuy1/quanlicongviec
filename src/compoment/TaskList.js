@@ -1,43 +1,47 @@
 import React from 'react';
+import TaskItem from './TaskItem';
 
-
-
-class TaskForm extends React.Component {
+class TaskList extends React.Component {
 
 
 
   render(){
     return (
-        <div className="panel panel-warning">
-            <div className="panel-heading">
-                <h3 className="panel-title">Thêm Công Việc
-                    <span className="fa fa-times-circle mr-5" />
-                </h3>
-            </div>
-        
-            <div className="row">
-                <div className="panel-body mt-15">
-                    <form>
-                        <div className="form-group">
-                            <label>Tên :</label>
-                            <input type="text" className="form-control" />
-                        </div>
-                        <label>Trạng Thái :</label>
-                        <select className="form-control" required="required">
-                            <option value={1}>Kích Hoạt</option>
-                            <option value={0}>Ẩn</option>
-                        </select>
-                        <br />
-                        <div className="text-center">
-                            <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;
-                            <button type="submit" className="btn btn-danger">Hủy Bỏ</button>
-                        </div>
-                    </form>
-                </div>
+        <div className="row mt-15">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <table className="table table-bordered table-hover mt-15">
+                <thead>
+                    <tr>
+                        <th className="text-center">STT</th>
+                        <th className="text-center">Tên</th>
+                        <th className="text-center">Trạng Thái</th>
+                        <th className="text-center">Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td />
+                    <td>
+                    <input type="text" className="form-control" />
+                    </td>
+                    <td>
+                    <select className="form-control">
+                        <option value={-1}>Tất Cả</option>
+                        <option value={0}>Ẩn</option>
+                        <option value={1}>Kích Hoạt</option>
+                    </select>
+                    </td>
+                    <td />
+                </tr>
+                <TaskItem/>
+                <TaskItem/>
+                <TaskItem/>
+                </tbody>
+            </table>
             </div>
       </div>
     );
   }
 }
 
-export default TaskForm;
+export default TaskList;
