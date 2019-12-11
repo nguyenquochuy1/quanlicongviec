@@ -14,11 +14,20 @@ class App extends React.Component {
         tasks : []
      }
   }
+  componentDidMount(){
+    if(localStorage && localStorage.getItem('keytasks')){
+        var nochangetask = localStorage.getItem('keytasks');
+        return this.setState({
+          tasks : nochangetask
+        });
+          
+        
+    }
+  }
   
   onGenerateData = () => {
     //console.log('hien cmn thi ');
-
-    var tasks = [  // id : unique , name , status 
+    var tasks2 = [  // id : unique , name , status 
       {
         id : this.generateID(),
         name : 'Hoc Lap trinh',
@@ -37,12 +46,20 @@ class App extends React.Component {
         status : true
       }
     ];
+    //console.log(tasks);
+
+    this.setState({
+      tasks : tasks2 // set tasks trong state bang tasks trong ham onGenerateData
+    });
+
+    localStorage.setItem('keytasks',JSON.stringify(tasks2));
   }
+
   s4(){
-    return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
+    return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1); //floor la ham lam tron chu so.
   }
   generateID(){
-    return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +this.s4() + '-'+ 
+    return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +this.s4() + '-' + 
     this.s4() + this.s4()  +this.s4() ;
   }
 
