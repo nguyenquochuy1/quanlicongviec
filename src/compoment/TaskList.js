@@ -6,7 +6,13 @@ class TaskList extends React.Component {
 
 
   render(){
+    // var { taskProps }  = this.props; // var tasks = this.props.taskProps
+    var {tasks} = this.props;
+    var elemTasks = tasks.map((task,index) => {
+        return <TaskItem />
+    });
     return (
+        
         <div className="row mt-15">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <table className="table table-bordered table-hover mt-15">
@@ -33,9 +39,7 @@ class TaskList extends React.Component {
                     </td>
                     <td />
                 </tr>
-                <TaskItem/>
-                <TaskItem/>
-                <TaskItem/>
+                    {elemTasks}
                 </tbody>
             </table>
             </div>

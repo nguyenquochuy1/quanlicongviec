@@ -20,8 +20,6 @@ class App extends React.Component {
         return this.setState({
           tasks : nochangetask
         });
-          
-        
     }
   }
   
@@ -64,6 +62,7 @@ class App extends React.Component {
   }
 
   render(){
+    var { tasks } = this.state; // var tasks = this.state.tasks ; co the coi tasks la 1 doi tuong chu khong la bien 
     return (
       <div className="container">
         <div className="text-center">
@@ -93,7 +92,7 @@ class App extends React.Component {
             <Control/>
             
             {/* List */}
-            <TaskList/>
+            <TaskList taskProps = {tasks}/>
             
           </div>
         </div>
