@@ -3,13 +3,12 @@ import TaskItem from './TaskItem';
 
 class TaskList extends React.Component {
 
-
-
   render(){
     // var { taskProps }  = this.props; // var tasks = this.props.taskProps
-    var {tasks} = this.props;
-    var elemTasks = tasks.map((task,index) => {
-        return <TaskItem />
+    // var {tasks} = this.props.taskProps;
+    var tasks = this.props.taskProps
+    var eleTasks = tasks.map((task,index) => {
+        return <TaskItem key={task.id} index={index} taskPropsList = {task}/>
     });
     return (
         
@@ -39,7 +38,7 @@ class TaskList extends React.Component {
                     </td>
                     <td />
                 </tr>
-                    {elemTasks}
+                    {eleTasks}
                 </tbody>
             </table>
             </div>

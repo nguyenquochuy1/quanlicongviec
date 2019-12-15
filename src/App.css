@@ -29,3 +29,7 @@
 .ml-5{
   margin-left: 5px;
 }
+.text-right{
+  float: right;
+  cursor: pointer;
+}

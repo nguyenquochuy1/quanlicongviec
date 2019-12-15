@@ -1,37 +1,75 @@
 import React from 'react';
 
-
-
 class TaskForm extends React.Component {
 
-render(){
-  return (
+  constructor(props){
+    super(props);
+    this.state = {
+      name : '',
+      status : false
+    }
+  }
 
-    <div className="panel panel-warning">
-      <div className="panel-heading">
-        <h3 className="panel-title">Thêm Công Việc
-          <span className="fa fa-times-circle text-right" />
-        </h3>
-      </div>
-      <div className="panel-body">
-        <form>
-          <div className="form-group">
-            <label>Tên :</label>
-            <input type="text" className="form-control" />
+  onCloseForm = () => {
+    this.props.onCloseFormProp(); // nếu sử dụng return thì sẽ trả về giá trị của hàm.
+  }
+  
+  onHandleChange = (event) =>{
+    var target = event.target; 
+    var name = target.name; // lay name cua input va selectbox
+    var value = target.value;
+
+    this.setState({
+        [name] : value
+    });
+
+
+  }
+  onSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
+  render(){
+    return (
+
+      <div className="panel panel-warning">
+          <div className="panel-heading">
+            <h3 className="panel-title">Thêm Công Việc
+              <span className="fa fa-times-circle text-right" onClick={this.onCloseForm} />
+            </h3>
           </div>
-          <label>Trạng Thái :</label>
-          <select className="form-control" required="required">
-            <option value={1}>Kích Hoạt</option>
-            <option value={0}>Ẩn</option>
-          </select>
-          <br />
-          <div className="text-center">
-            <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;
-            <button type="submit" className="btn btn-danger">Hủy Bỏ</button>
+          <div className="panel-body">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label>Tên :</label>
+                <input 
+                  type="text" 
+                  className="form-control"
+                  name = "name"
+                  value = {this.state.name}
+                  onChange = {this.onHandleChange}
+                  />
+              </div>
+              <label>Trạng Thái :</label>
+              <select 
+                className="form-control"
+                required="required"
+                name = "status"
+                value = {this.state.status}
+                onChange = {this.onHandleChange}
+              >
+                <option value={true}>Kích Hoạt</option>
+                <option value={false}>Ẩn</option>
+              </select>
+              <br />
+              <div className="text-center">
+                <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;
+                <button type="submit" className="btn btn-danger">Hủy Bỏ</button>
+              </div>
+            </form>
           </div>
-        </form>
       </div>
-  </div>
 
 
 
