@@ -73,12 +73,27 @@ class App extends React.Component {
     });
   }
 
+  onSubmit = (name,status) => {
+    console.log(name , status);
+    // var task = {
+    //   id : this.generateID(),
+    //   data : this.name,
+    //   status : this.status.toString()
+    // }
+    // this.setState({
+    //   tasks : task
+    // });
+    
+  }
+
   render(){
     //var { tasksApp } = this.state; // var tasks = this.state.tasks ; co the coi tasks la 1 doi tuong chu khong la bien
     //var tasksApp = this.state.tasks;
     var tasksApp = this.state.tasks; 
     var isDisplayForm = this.state.isDisplayForm;
-    var elemTaskForm = isDisplayForm ? <TaskForm onCloseFormProp = {this.onCloseForm}/> : '';
+    var elemTaskForm = isDisplayForm 
+        ? <TaskForm onSubmit={this.onSubmit} onCloseFormProp = {this.onCloseForm}/> 
+        : '';
     return (
       <div className="container">
         <div className="text-center">

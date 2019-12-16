@@ -14,20 +14,21 @@ class TaskForm extends React.Component {
     this.props.onCloseFormProp(); // nếu sử dụng return thì sẽ trả về giá trị của hàm.
   }
   
-  onHandleChange = (event) =>{
+  onHandleChange = (event) =>{ // event la 1 tham so cua su kien đại diện cho 1 sư thay đổi nội dung input
     var target = event.target; 
-    var name = target.name; // lay name cua input va selectbox
-    var value = target.value;
+    var name = target.name; // target.name lay name cua input gan vao bien name
+    var value = target.value;// target.value lay value cua selectbox gắn vào biến value
 
     this.setState({
-        [name] : value
+        [name] : value // cần hỏi chỗ này  ???? 
     });
 
 
   }
   onSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    this.props.onSubmit(this.state.name,this.state.status === 'true' ? true : false ); // truyền state ra ngoài tasklist bằng cách gán props
+                                                                                       // convert chuyển string thành giá trị boolean          
   }
 
   render(){
