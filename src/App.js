@@ -17,8 +17,8 @@ class App extends React.Component {
   }
   componentDidMount(){
     if(localStorage && localStorage.getItem('keytasks')){
-        var nochangetask = localStorage.getItem('keytasks');
-        return this.setState({
+        var nochangetask = JSON.parse(localStorage.getItem('keytasks'));
+        this.setState({
           tasks : nochangetask
         });
     }
@@ -73,16 +73,27 @@ class App extends React.Component {
     });
   }
 
-  onSubmit = (name,status) => {
-    console.log(name , status);
-    // var task = {
-    //   id : this.generateID(),
-    //   data : this.name,
-    //   status : this.status.toString()
-    // }
+  onSubmit = (data) => {
+    //console.log(data);
+    var tasks3 = this.state.tasks; // gan task cua state cho bien task3
+    data.id = this.generateID(); // task
+    tasks3.push(data); // day tasks3 vao data(task)
+
+    this.setState({
+      tasks : tasks3
+    });
+
+    localStorage.setItem('keytasks',JSON.stringify(tasks3));
+
+    //console.log(tasks3.push(data));
+
     // this.setState({
-    //   tasks : task
+    //   tasks : tasks3
     // });
+    
+    //console.log(tasks);
+    //console.log(data);
+    
     
   }
 
@@ -124,6 +135,7 @@ class App extends React.Component {
             
             {/* List */}
             <TaskList taskProps = {tasksApp}/>
+            
             
           </div>
         </div>

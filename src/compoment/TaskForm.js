@@ -16,19 +16,33 @@ class TaskForm extends React.Component {
   
   onHandleChange = (event) =>{ // event la 1 tham so cua su kien đại diện cho 1 sư thay đổi nội dung input
     var target = event.target; 
+    
     var name = target.name; // target.name lay name cua input gan vao bien name
     var value = target.value;// target.value lay value cua selectbox gắn vào biến value
-
+    if (name === 'status') {
+      value = target.value === 'true' ? true : false;
+    }
     this.setState({
-        [name] : value // cần hỏi chỗ này  ???? 
+        [name] : value // tuy tung name cua input hoac selecbox de lay value 
     });
 
+    // console.log(event);
+    // console.log(target);
+    // console.log(target.name);
+    // console.log(target.value);
 
   }
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state.name,this.state.status === 'true' ? true : false ); // truyền state ra ngoài tasklist bằng cách gán props
-                                                                                       // convert chuyển string thành giá trị boolean          
+    //this.props.onSubmit(this.state.name,this.state.status === 'true' ? true : false ); // truyền state ra ngoài tasklist bằng cách gán props
+    this.props.onSubmit(this.state);                                                                                   // convert chuyển string thành giá trị boolean          
+  }
+
+  onClear = () => {
+    this.setState({
+      name : '',
+      status : false
+    });
   }
 
   render(){
@@ -66,7 +80,11 @@ class TaskForm extends React.Component {
               <br />
               <div className="text-center">
                 <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;
-                <button type="submit" className="btn btn-danger">Hủy Bỏ</button>
+                <button type="submit" 
+                        className="btn btn-danger"
+                        onClick = {this.onClear}
+                        >Hủy Bỏ
+                </button>
               </div>
             </form>
           </div>

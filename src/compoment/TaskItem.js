@@ -3,8 +3,8 @@ import React from 'react';
 class TaskItem extends React.Component {
 
   render(){
-    var task = this.props.taskPropsList;
-    var index = this.props.index;
+    var {task,index} = this.props; // dau ngoac {} giup bien props thanh 1 doi tuong 
+    //var index = this.props.index;
     return (
         <tr>
             <td>{index + 1}</td>
