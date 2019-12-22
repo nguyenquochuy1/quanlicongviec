@@ -18,10 +18,11 @@ class TaskForm extends React.Component {
     var target = event.target; 
     
     var name = target.name; // target.name lay name cua input gan vao bien name
-    var value = target.value;// target.value lay value cua selectbox gắn vào biến value
+    var value = target.value;// target.value lay value cua selectbox va input gắn vào biến value
     if (name === 'status') {
       value = target.value === 'true' ? true : false;
     }
+    
     this.setState({
         [name] : value // tuy tung name cua input hoac selecbox de lay value 
     });
@@ -34,8 +35,12 @@ class TaskForm extends React.Component {
   }
   onSubmit = (event) => {
     event.preventDefault();
-    //this.props.onSubmit(this.state.name,this.state.status === 'true' ? true : false ); // truyền state ra ngoài tasklist bằng cách gán props
-    this.props.onSubmit(this.state);                                                                                   // convert chuyển string thành giá trị boolean          
+    //this.props.onSubmit(this.state.name,this.state.status === 'true' ? true : false );  // convert chuyển string thành giá trị boolean 
+                                                                                          // truyền state ra ngoài tasklist bằng cách gán props
+    this.props.onSubmit(this.state);                                                    
+    this.onClear();
+    this.onCloseForm();
+                                                                                              
   }
 
   onClear = () => {
@@ -79,21 +84,17 @@ class TaskForm extends React.Component {
               </select>
               <br />
               <div className="text-center">
-                <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;
-                <button type="submit" 
+                <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;   
+                <button type="button"  
                         className="btn btn-danger"
                         onClick = {this.onClear}
                         >Hủy Bỏ
                 </button>
+                {/* su kien cua nut submit chi co nut submit moi hieu duoc  */}
               </div>
             </form>
           </div>
       </div>
-
-
-
-    
-
     );
   }
 }

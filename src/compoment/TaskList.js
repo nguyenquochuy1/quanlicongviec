@@ -9,7 +9,10 @@ class TaskList extends React.Component {
     //var tasks = this.props.taskProps
     var tasks = this.props.taskProps;
     var eleTasks = tasks.map((task,index) => {
-        return <TaskItem key={task.id} index={index} task = {task}/>
+        return <TaskItem key={task.newid} 
+                         index={index} 
+                         task = {task} 
+                         onUpdateStatus={this.props.onUpdateStatus}/>
     });
     return (
         

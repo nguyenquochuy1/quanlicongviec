@@ -24,35 +24,35 @@ class App extends React.Component {
     }
   }
   
-  onGenerateData = () => {
-    //console.log('hien cmn thi ');
-    var tasks2 = [  // id : unique , name , status 
-      {
-        id : this.generateID(),
-        name : 'Hoc Lap trinh',
-        status : true
-      },
+  // onGenerateData = () => {
+  //   //console.log('hien cmn thi ');
+  //   var tasks2 = [  // id : unique , name , status 
+  //     {
+  //       id : this.generateID(),
+  //       name : 'Hoc Lap trinh',
+  //       status : true
+  //     },
 
-      {
-        id : this.generateID(),
-        name : 'Di da banh ',
-        status : true
-      },
+  //     {
+  //       id : this.generateID(),
+  //       name : 'Di da banh ',
+  //       status : true
+  //     },
 
-      {
-        id : this.generateID(),
-        name : 'Di nhat ban',
-        status : false
-      }
-    ];
-    //console.log(tasks);
+  //     {
+  //       id : this.generateID(),
+  //       name : 'Di nhat ban',
+  //       status : false
+  //     }
+  //   ];
+  //   //console.log(tasks);
 
-    this.setState({
-      tasks : tasks2 // set tasks trong state bang tasks trong ham onGenerateData
-    });
+  //   this.setState({
+  //     tasks : tasks2 // set tasks trong state bang tasks trong ham onGenerateData
+  //   });
 
-    localStorage.setItem('keytasks',JSON.stringify(tasks2));
-  }
+  //   localStorage.setItem('keytasks',JSON.stringify(tasks2));
+  // }
 
   s4(){
     return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1); //floor la ham lam tron chu so.
@@ -76,25 +76,26 @@ class App extends React.Component {
   onSubmit = (data) => {
     //console.log(data);
     var tasks3 = this.state.tasks; // gan task cua state cho bien task3
-    data.id = this.generateID(); // task
+    data.newid = this.generateID(); // task
     tasks3.push(data); // day tasks3 vao data(task)
-
+    
     this.setState({
       tasks : tasks3
     });
 
     localStorage.setItem('keytasks',JSON.stringify(tasks3));
 
-    //console.log(tasks3.push(data));
+  }
 
-    // this.setState({
-    //   tasks : tasks3
-    // });
-    
-    //console.log(tasks);
-    //console.log(data);
-    
-    
+  onUpdateStatus = (id) => {
+    // console.log(id);
+    var index = this .findIndex(id);
+
+  }
+
+  findIndex = () => {
+    var {tasks} = this.state;
+    tasks.forEach();
   }
 
   render(){
@@ -122,19 +123,19 @@ class App extends React.Component {
               <span className="fa fa-plus mr-5"  />Thêm Công Việc
             </button>
 
-            <button 
+            {/* <button 
               type="button" 
               className="btn btn-danger ml-5"
               onClick={this.onGenerateData}
               >
               Data Genergertor
-            </button>
+            </button> */}
             
             {/* Search-Sort */}
             <Control/>
             
             {/* List */}
-            <TaskList taskProps = {tasksApp}/>
+            <TaskList taskProps = {tasksApp} onUpdateStatus = {this.onUpdateStatus}/>
             
             
           </div>
