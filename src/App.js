@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = { 
         tasks : [],
-        isDisplayForm :false
+        isDisplayForm :false,
      }
   }
   componentDidMount(){
@@ -87,15 +87,49 @@ class App extends React.Component {
 
   }
 
-  onUpdateStatus = (id) => {
-    // console.log(id);
-    var index = this .findIndex(id);
+  
 
+  // onUpdateStatus = (id) => {
+  //   // console.log(id);
+  //   var {tasks} = this.state;
+  //   var index = this.findIndex(id);
+  //   console.log(index);
+  //   if (index !== -1) {
+  //     //tasks[index].status  = !tasks[index].status;
+      
+  //     this.setState({
+  //       tasks : tasks
+  //     });
+  //   }
+  // }
+
+  onUpdateStatus = (id) => {
+    const { tasks } = this.state;
+    const newTasks = tasks.map(task => {
+      if (task.newid === id) {
+        task.status = !task.status
+      }
+      return task;
+    })
+    this.setState({
+      tasks: newTasks  // mang tasks trong state = newTasks 
+    });
   }
 
-  findIndex = () => {
+  
+
+  findIndex = (id) => {
+    // console.log(id);
     var {tasks} = this.state;
-    tasks.forEach();
+    var result = -1 ;
+    tasks.forEach((task , index)=>{
+      if (task.newid === id) {
+        
+         result = index;
+        
+      }
+      return result;
+    });
   }
 
   render(){

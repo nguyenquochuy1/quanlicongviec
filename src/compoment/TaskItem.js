@@ -2,10 +2,10 @@ import React from 'react';
 
 class TaskItem extends React.Component {
 
-  onUpdateStatus = () => {
+    onUpdateStatus = () => {
 
     this.props.onUpdateStatus(this.props.task.newid);
-    // console.log(this.props.task.id);
+    //console.log(this.props.task.newid);
     // if () {
         
     // }
@@ -19,7 +19,8 @@ class TaskItem extends React.Component {
             <td>{index + 1}</td>
             <td>{task.name}</td>
             <td className="text-center">   
-                <span className={task.status === true ? 'label label-danger' : 'label label-success'} onClick = {this.onUpdateStatus}>
+                <span className={task.status === true ? 'label label-danger' : 'label label-success'} 
+                      onClick = {this.onUpdateStatus}>
                     {task.status === true ? 'Kích hoạt' : 'Ẩn'}
                 </span>
             </td>

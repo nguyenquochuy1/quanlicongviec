@@ -6,7 +6,6 @@ class TaskList extends React.Component {
   render(){
     // var { taskProps }  = this.props; // var tasks = this.props.taskProps
     // var {tasks} = this.props.taskProps;
-    //var tasks = this.props.taskProps
     var tasks = this.props.taskProps;
     var eleTasks = tasks.map((task,index) => {
         return <TaskItem key={task.newid} 
