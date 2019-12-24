@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = { 
         tasks : [],
         isDisplayForm :false,
+        taskEditing : null
      }
   }
   componentDidMount(){
@@ -77,8 +78,7 @@ class App extends React.Component {
     //console.log(data);
     var tasks3 = this.state.tasks; // gan task cua state cho bien task3
     data.newid = this.generateID(); // task
-    tasks3.push(data); // day tasks3 vao data(task)
-    
+    tasks3.push(data); // day data vao task3(task)
     this.setState({
       tasks : tasks3
     });
@@ -110,25 +110,40 @@ class App extends React.Component {
         task.status = !task.status
       }
       return task;
-    })
+    });
     this.setState({
       tasks: newTasks  // mang tasks trong state = newTasks 
     });
   }
 
-  
+  // findIndex = (id) => {
+  //   // console.log(id);
+  //   var {tasks} = this.state;
+  //   var result = -1 ;
+  //   tasks.forEach((task , index)=>{
+  //     if (task.newid === id) {
+        
+  //        result = index;
+        
+  //     }
+  //     return result;
+  //   });
+  // }
 
-  findIndex = (id) => {
-    // console.log(id);
-    var {tasks} = this.state;
-    var result = -1 ;
-    tasks.forEach((task , index)=>{
-      if (task.newid === id) {
-        
-         result = index;
-        
-      }
-      return result;
+  onDelete = (id) => {
+    const { tasks } = this.state;
+    const newTasks = tasks.filter(task => task.newid !== id); //loc lay id khong duoc chon, roi gan cho mang task 
+    this.setState({
+      tasks: newTasks  // mang tasks trong state = newTasks 
+    });
+    this.onCloseForm();
+    //localStorage.setItem('tasks', JSON.stringify(newTasks))
+  }
+
+  onUpdate = () => {
+    const { tasks } = this.state;
+    const newTasks = tasks.map(task => {
+    
     });
   }
 
@@ -169,7 +184,11 @@ class App extends React.Component {
             <Control/>
             
             {/* List */}
-            <TaskList taskProps = {tasksApp} onUpdateStatus = {this.onUpdateStatus}/>
+            <TaskList taskProps = {tasksApp} 
+                      onUpdateStatus = {this.onUpdateStatus} 
+                      onDelete ={this.onDelete} 
+                      onUpdate = {this.onUpdate}
+                      />
             
             
           </div>

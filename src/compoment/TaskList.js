@@ -11,7 +11,10 @@ class TaskList extends React.Component {
         return <TaskItem key={task.newid} 
                          index={index} 
                          task = {task} 
-                         onUpdateStatus={this.props.onUpdateStatus}/>
+                         onUpdateStatus={this.props.onUpdateStatus}
+                         onDelete = {this.props.onDelete}
+                         onUpdate = {this.props.onUpdate}
+                         />
     });
     return (
         
