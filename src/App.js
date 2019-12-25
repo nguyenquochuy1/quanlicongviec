@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       tasks: [],
       isDisplayForm: false,
-      taskEditing: null
+      taskEditing: []
     }
   }
   componentDidMount() {
