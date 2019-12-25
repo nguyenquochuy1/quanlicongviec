@@ -1,12 +1,19 @@
 import React from 'react';
 
 class TaskForm extends React.Component {
+  static defaultProps = {
+    task: {}
+  }
 
   constructor(props){
     super(props);
+
+    const { task } = props;
+    
     this.state = {
-      name : '',
-      status : false
+      id : task.newid,
+      name : task.name,
+      status : task.status
     }
   }
 
@@ -52,7 +59,6 @@ class TaskForm extends React.Component {
 
   render(){
     return (
-
       <div className="panel panel-warning">
           <div className="panel-heading">
             <h3 className="panel-title">Thêm Công Việc

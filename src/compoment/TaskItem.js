@@ -4,10 +4,7 @@ class TaskItem extends React.Component {
 
     onUpdateStatus = () => {
         this.props.onUpdateStatus(this.props.task.newid);
-        //console.log(this.props.task.newid);
-        // if () {
-
-        // }
+        
     }
     onDelete = () =>{
         this.props.onDelete(this.props.task.newid);
@@ -17,7 +14,7 @@ class TaskItem extends React.Component {
     }    
 
     render(){
-        var {task,index} = this.props; // dau ngoac {} giup bien props thanh 1 doi tuong 
+        var {task,index} = this.props; // dau ngoac {} giup bien props thanh 1 doi tuong ??
         //var index = this.props.index;
     return (
         <tr>
