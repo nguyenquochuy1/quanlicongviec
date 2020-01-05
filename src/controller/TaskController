@@ -1,0 +1,23 @@
+class TaskController {
+    // constructor(brand) {
+    //     this.constname = brand;
+    // }
+    // addItem(brand){
+    //     this.addname = brand;
+    // }
+    // editItem(brand){
+    //     this.editname = brand;
+    // }
+    // delItem(brand){
+    //     this.delname = brand;
+    // }
+    constructor(){
+
+    }
+
+    
+}
+
+
+
+

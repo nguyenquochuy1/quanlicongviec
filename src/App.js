@@ -4,9 +4,12 @@ import './App.css';
 import TaskForm from './compoment/TaskForm';
 import Control from './compoment/Control';
 import TaskList from './compoment/TaskList';
+import TaskController from '../src/controller/TaskController';
+
 
 class App extends React.Component {
 
+  // myitem = new TaskController('item');
 
   constructor(props) {
     super(props);
@@ -24,6 +27,7 @@ class App extends React.Component {
       });
     }
   }
+
 
   // onGenerateData = () => {
   //   //console.log('hien cmn thi ');
@@ -63,10 +67,25 @@ class App extends React.Component {
       this.s4() + this.s4() + this.s4();
   }
 
-  onToggleForm = () => {
+  onToggleForm = (id) => {
+    // if (this.state.isDisplayForm && this.state.taskEditing !== null) {
+    //   console.log('aaaa')
+    //   this.setState({
+    //     isDisplayForm : true,
+    //     taskEditing : [] 
+    //   });
+    // } else {
+    //   console.log('cccc')
+    //   this.setState({
+    //     isDisplayForm : !this.state.isDisplayForm,
+    //     taskEditing : [] 
+    //   });
+    // }
     this.setState({
-      isDisplayForm: !this.state.isDisplayForm
+      isDisplayForm : !this.state.isDisplayForm,
+      taskEditing : [] 
     });
+    
   }
   onCloseForm = () => {
     this.setState({
@@ -82,15 +101,25 @@ class App extends React.Component {
   }
 
   onSubmit = (data) => {
-    //console.log(data);
-    var tasks3 = this.state.tasks; // gan task cua state cho bien task3
+    // console.log(data);
+    var {tasks} = this.state;
     data.newid = this.generateID(); // task
-    tasks3.push(data); // day data vao task3(task)
+    tasks.push(data); // day data vao task3(task)
     this.setState({
-      tasks: tasks3
+      tasks : tasks  // new : this.state.old kieu nhu update task
     });
 
-    localStorage.setItem('keytasks', JSON.stringify(tasks3));
+    const taskEditing = tasks.find(o => o.newid === data.newid);
+    if(taskEditing === undefined){
+      console.log(taskEditing)
+      this.setState({
+        tasks: !tasks
+      });
+    }else{
+      //console.log('ah hi hi');
+    }
+
+    localStorage.setItem('keytasks', JSON.stringify(tasks));
 
   }
 
@@ -141,18 +170,26 @@ class App extends React.Component {
     const { tasks } = this.state;
     const newTasks = tasks.filter(task => task.newid !== id); //loc lay id khong duoc chon, roi gan cho mang task 
     this.setState({
-      tasks: newTasks  // mang tasks trong state = newTasks 
+      //tasks: newTasks  // mang tasks trong state = newTasks
+      tasks: newTasks 
     });
     this.onCloseForm();
-    //localStorage.setItem('tasks', JSON.stringify(newTasks))
+    localStorage.setItem('keytasks', JSON.stringify(newTasks))
   }
 
   onUpdate = (id) => {
-    const { tasks } = this.state;
+    const {tasks} = this.state;
 
     const taskEditing = tasks.find(o => o.newid === id); // ham find giup tim id cua nguoi dung chon  === 
 
     this.onShowForm(taskEditing);
+  }
+
+  onFillter = (fillterName,fillterStatus) =>{
+    console.log(fillterName - fillterStatus);
+    
+    //const {tasks} = this.state
+    
   }
 
   render() {
@@ -184,7 +221,7 @@ class App extends React.Component {
           <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
 
             <button type="button" className="btn btn-primary" onClick={this.onToggleForm}>
-              <span className="fa fa-plus mr-5" />Thêm Công Việc
+              <span className="fa fa-plus mr-5" /> Thêm Công Việc
             </button>
 
             {/* <button 
@@ -199,11 +236,14 @@ class App extends React.Component {
             <Control />
 
             {/* List */}
-            <TaskList taskProps={tasksApp}
+            <TaskList 
+              taskProps={tasksApp}
               onUpdateStatus={this.onUpdateStatus}
               onDelete={this.onDelete}
               onUpdate={this.onUpdate}
+              onFillter={this.onFillter}
             />
+            
 
 
           </div>
@@ -212,5 +252,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default App;

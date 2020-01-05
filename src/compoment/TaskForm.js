@@ -8,14 +8,25 @@ class TaskForm extends React.Component {
   constructor(props){
     super(props);
 
-    const { task } = props;
+    const { task } = this.props;
     
     this.state = {
-      id : task.newid,
+      id : task.newid, // id : this.props.newid
       name : task.name,
       status : task.status
     }
   }
+  // UNSAFE_componentWillReceiveProps (nextProps){
+  //   //console.log(nextProps);
+  //   const { task } = this.props;
+  //   if (nextProps && nextProps.task) {
+  //     this.setState({
+  //       id : nextProps.task.newid, // id : this.props.newid
+  //       name : nextProps.task.name,
+  //       status : nextProps.task.status
+  //     });
+  //   }
+  // }
 
   onCloseForm = () => {
     this.props.onCloseFormProp(); // nếu sử dụng return thì sẽ trả về giá trị của hàm.
@@ -55,13 +66,15 @@ class TaskForm extends React.Component {
       name : '',
       status : false
     });
+    //this.onCloseForm();
+    
   }
 
   render(){
     return (
       <div className="panel panel-warning">
           <div className="panel-heading">
-            <h3 className="panel-title">Thêm Công Việc
+            <h3 className="panel-title">{this.state.id ? 'Sửa Chữa Công Việc':'Thêm Công Việc'}
               <span className="fa fa-times-circle text-right" onClick={this.onCloseForm} />
             </h3>
           </div>
@@ -90,7 +103,7 @@ class TaskForm extends React.Component {
               </select>
               <br />
               <div className="text-center">
-                <button type="submit" className="btn btn-warning">Thêm</button>&nbsp;   
+                <button type="submit" className="btn btn-warning">{this.state.id ? 'Sửa' : 'Thêm'}</button>&nbsp;   
                 <button type="button"  
                         className="btn btn-danger"
                         onClick = {this.onClear}
