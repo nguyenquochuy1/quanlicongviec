@@ -37,6 +37,7 @@ class TaskForm extends React.Component {
     
     var name = target.name; // target.name lay name cua input gan vao bien name
     var value = target.value;// target.value lay value cua selectbox va input gắn vào biến value
+    
     if (name === 'status') {
       value = target.value === 'true' ? true : false;
     }
@@ -67,7 +68,6 @@ class TaskForm extends React.Component {
       status : false
     });
     //this.onCloseForm();
-    
   }
 
   render(){

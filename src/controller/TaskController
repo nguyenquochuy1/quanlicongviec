@@ -2,21 +2,33 @@ class TaskController {
     // constructor(brand) {
     //     this.constname = brand;
     // }
-    // addItem(brand){
-    //     this.addname = brand;
-    // }
-    // editItem(brand){
-    //     this.editname = brand;
-    // }
-    // delItem(brand){
-    //     this.delname = brand;
-    // }
     constructor(){
-
+        this.state = {
+            tasks: [],
+        }
     }
 
-    
+    addItem(task){
+        var storages = JSON.parse(localStorage.getItem('keytasks'));
+        var value = storages.Map(storage => storage.newid);
+        if (localStorage && localStorage.getItem('keytasks') && task.newid !== value ) {
+            var name = storages;
+            this.setState({
+              tasks: name
+            });
+        }
+    }
+    editItem(task){
+        
+        
+    }
+    delItem(brand){
+        this.delname = brand;
+    }
 }
+
+var newTask = new TaskController();
+newTask.addItem({'newid': 1});
 
 
 

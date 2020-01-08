@@ -109,15 +109,15 @@ class App extends React.Component {
       tasks : tasks  // new : this.state.old kieu nhu update task
     });
 
-    const taskEditing = tasks.find(o => o.newid === data.newid);
-    if(taskEditing === undefined){
-      console.log(taskEditing)
-      this.setState({
-        tasks: !tasks
-      });
-    }else{
-      //console.log('ah hi hi');
-    }
+    //const taskEditing = tasks.find(o => o.newid === data.newid);
+    // if(taskEditing === undefined){
+    //   console.log(taskEditing)
+    //   this.setState({
+    //     tasks: !tasks
+    //   });
+    // }else{
+    //   //console.log('ah hi hi');
+    // }
 
     localStorage.setItem('keytasks', JSON.stringify(tasks));
 

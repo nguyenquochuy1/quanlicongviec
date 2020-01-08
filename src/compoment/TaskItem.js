@@ -36,9 +36,9 @@ class TaskItem extends React.Component {
                 </button>
                 &nbsp;
                 <button 
-                type="button" 
-                className="btn btn-danger"
-                onClick = {this.onDelete}
+                    type="button" 
+                    className="btn btn-danger"
+                    onClick = {this.onDelete}
                 >
                     <span className="fa fa-trash mr-5" />Xóa
                 </button>
